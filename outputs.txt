@@ -1,0 +1,84 @@
+
+
+
+
+import urllib
+
+local_fname = 'weather-buoy-data.txt.gz'
+urllib.request.urlretrieve('https://www.ndbc.noaa.gov/data/historical/stdmet/42040h2021.txt.gz', local_fname)
+
+
+
+
+import gzip
+
+f = iter(gzip.open('weather-buoy-data.txt.gz'))
+next(f)
+next(f)
+vals = []
+for line in f:
+    vals.append(float(line.split()[5]))
+
+
+
+
+import numpy as np
+
+orig = (vals[0] + (np.arange(len(vals)) % 10) / 11).reshape((16,2333))
+
+
+
+
+import numpy as np
+a = np.round(orig, 2)
+
+
+
+
+b = np.floor(orig*100)/100
+
+
+
+
+c = np.delete(a, 5, 1)
+
+
+
+
+np.array_equal(a,c)
+
+
+
+
+a.shape, b.shape, c.shape
+
+
+
+
+
+import urllib
+
+local_fname = 'fl-weather-alerts.json'
+urllib.request.urlretrieve('https://api.weather.gov/alerts/active?area=FL', local_fname)
+
+
+
+
+import json
+d = json.load(open(local_fname));
+
+
+
+
+len(d['features'])
+
+
+
+
+[feat['properties']['headline'] for feat in d['features']]
+
+
+
+
+
+

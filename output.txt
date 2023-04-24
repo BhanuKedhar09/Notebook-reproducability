@@ -1,0 +1,30 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "%%capture cap --stderr\n",
+    "\n",
+    "def printing():\n",
+    "    print(\"something\")\n",
+    "\n",
+    "with open('capture.txt', \"w\") as f:\n",
+    "    f.write(cap.stdout)\n",
+    "\n",
+    "# import glob\n",
+    "# glob.glob('**/capture.txt', recursive = True)"
+   ]
+  }
+ ],
+ "metadata": {
+  "language_info": {
+   "name": "python"
+  },
+  "orig_nbformat": 4
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
